@@ -16,6 +16,25 @@
 We present a portable, artifact-first protocol for cross-machine image generation and verification under deterministic replay constraints. The system enables one machine to declare a bounded rendering specification, a second machine to fulfill that specification under explicit constraints, and the originating machine to verify the returned artifact without reliance on network trust. The protocol is designed to operate across heterogeneous hardware environments and without dependency on centralized infrastructure. The result is a minimal continuation-control system for visual artifacts, supporting reproducibility, refusal-first execution, and portable verification.
 \end{abstract}
 
+\section*{Provenance}
+
+This document is an artifact-first record produced under Witness Grade Analytics (WGA) continuation-control discipline.
+
+Visible publication artifacts for this document include:
+\begin{itemize}
+\item source artifact: \texttt{portable\_continuation\_witness.tex}
+\item compiled artifact: \texttt{portable\_continuation\_witness.pdf}
+\item cryptographic receipt: \texttt{portable\_continuation\_witness.pdf.sha256}
+\item repository-preserved provenance chain under version control
+\end{itemize}
+
+Decision precedence for artifact promotion remains:
+\[
+\text{HALT} > \text{INCOMPLETE} > \text{PASS}
+\]
+
+This paper should be interpreted as a bounded artifact in a preserved chain rather than as a free-floating text object.
+
 \section{Introduction}
 
 Contemporary systems assume that image generation, storage, and transmission occur within networked environments governed by centralized services. This assumption introduces ambiguity in provenance, execution authority, and reproducibility.
