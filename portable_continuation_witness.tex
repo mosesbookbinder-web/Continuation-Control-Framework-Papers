@@ -1,0 +1,197 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath, amssymb, graphicx, geometry, hyperref}
+\geometry{margin=1in}
+
+\title{Portable Continuation via Cross-Machine Witnessed Image Exchange\\
+\large A Deterministic, Artifact-First Protocol for Offline-Capable Systems}
+\author{J. M. Bookbinder \\ Witness Grade Analytics (WGA)}
+\date{2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We present a portable, artifact-first protocol for cross-machine image generation and verification under deterministic replay constraints. The system enables one machine to declare a bounded rendering specification, a second machine to fulfill that specification under explicit constraints, and the originating machine to verify the returned artifact without reliance on network trust. The protocol is designed to operate across heterogeneous hardware environments and without dependency on centralized infrastructure. The result is a minimal continuation-control system for visual artifacts, supporting reproducibility, refusal-first execution, and portable verification.
+\end{abstract}
+
+\section{Introduction}
+
+Contemporary systems assume that image generation, storage, and transmission occur within networked environments governed by centralized services. This assumption introduces ambiguity in provenance, execution authority, and reproducibility.
+
+We investigate an alternative model:
+
+\begin{quote}
+A machine declares a rendering specification. A second machine fulfills the specification under deterministic constraints. The resulting artifact is returned with a verifiable witness bundle.
+\end{quote}
+
+This replaces trust in infrastructure with verification of artifacts.
+
+\section{System Model}
+
+We define three roles:
+
+\begin{itemize}
+\item \textbf{Maverick (Operator Node)}: Declares rendering specifications and verifies results.
+\item \textbf{Babylon (Protocol Layer)}: Defines the structure of request and response packets.
+\item \textbf{Renderer (Worker Node)}: Executes rendering under constraints and emits artifacts.
+\end{itemize}
+
+\subsection{Core Objects}
+
+\textbf{Specification Packet}
+\begin{itemize}
+\item Declares rendering constraints (geometry, elements, bounds)
+\item Defines required outputs
+\item Includes request identifier
+\end{itemize}
+
+\textbf{Response Packet}
+\begin{itemize}
+\item Contains artifact hash
+\item Declares execution outcome
+\item Binds output to request identifier
+\end{itemize}
+
+\textbf{Run Bundle}
+\begin{itemize}
+\item Artifact (image)
+\item SHA-256 hashes
+\item Environment snapshot
+\item Decision record
+\item Manifest and verification script
+\end{itemize}
+
+\section{Finite-State Model}
+
+The system is modeled as a finite-state automaton:
+
+\[
+Q = \{IDLE, DECLARED, TRANSMITTED, VALIDATED, EXECUTING, EMITTED, RETURNED, VERIFIED, CLOSED, REFUSAL, EXEC\_FAIL, VERIFY\_FAIL\}
+\]
+
+\[
+q_0 = IDLE
+\]
+
+\[
+F = \{CLOSED\}
+\]
+
+Transitions occur under explicit admissibility checks. Failure states are terminal and preserved.
+
+\section{Decision Model}
+
+The system enforces strict precedence:
+
+\[
+\text{HALT} > \text{INCOMPLETE} > \text{PASS}
+\]
+
+\begin{itemize}
+\item \textbf{HALT}: Constraint violation or non-admissible state
+\item \textbf{INCOMPLETE}: Missing witnesses or unresolved conditions
+\item \textbf{PASS}: Artifact produced and verified
+\end{itemize}
+
+\section{Deterministic Replay}
+
+Let $S$ denote a specification and $O$ the produced artifact.
+
+\[
+O = R(S)
+\]
+
+where $R$ is a deterministic rendering operator.
+
+Replay requires:
+
+\[
+R(S) = O \Rightarrow \text{hash}(O') = \text{hash}(O)
+\]
+
+Any deviation results in:
+
+\[
+\text{decision} = \text{HALT or INCOMPLETE}
+\]
+
+\section{Portability Across Machines}
+
+The protocol is designed to function across machines with varying capabilities:
+
+\begin{itemize}
+\item differing CPU architectures
+\item differing OS environments
+\item differing library versions
+\end{itemize}
+
+Portability is achieved by:
+
+\begin{itemize}
+\item constraining specifications to admissible operations
+\item capturing environment state in the run bundle
+\item verifying outputs via hash equivalence rather than execution trace
+\end{itemize}
+
+\section{Offline Operation}
+
+No network connectivity is required.
+
+Transmission may occur via:
+
+\begin{itemize}
+\item local file transfer
+\item removable media
+\item direct device-to-device communication
+\end{itemize}
+
+The protocol treats the transmission channel as opaque. Only artifact integrity matters.
+
+\section{Experimental Demonstration}
+
+A deterministic navigation simulation was used as a rendering test case.
+
+\begin{itemize}
+\item Input: heading vector transitions
+\item Process: constrained propagation across discrete steps
+\item Output: trajectory image
+\end{itemize}
+
+The same specification produced identical geometry across machines, confirming replay stability.
+
+Small perturbations in early parameters resulted in divergent large-scale paths, demonstrating sensitivity to initial conditions and the necessity of precise specification.
+
+\section{Discussion}
+
+This system replaces implicit trust with explicit verification.
+
+Key properties:
+
+\begin{itemize}
+\item Artifact-first evaluation
+\item Deterministic replay
+\item Refusal-preserving execution
+\item Channel independence
+\end{itemize}
+
+The protocol is minimal yet extensible. While demonstrated for images, it generalizes to arbitrary artifact classes.
+
+\section{Conclusion}
+
+We have demonstrated a portable continuation-control protocol for cross-machine image exchange.
+
+The system establishes that:
+
+\begin{quote}
+An action is not considered complete unless it can be reproduced and verified under declared constraints.
+\end{quote}
+
+This approach enables a new class of offline-capable, verifiable systems independent of centralized infrastructure.
+
+\section*{Acknowledgments}
+
+All systems and experiments conducted under Witness Grade Analytics (WGA).
+
+\end{document}

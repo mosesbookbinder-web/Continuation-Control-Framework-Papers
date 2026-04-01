@@ -1,0 +1,5 @@
+{
+  "decision": "INCOMPLETE",
+  "reason": "no prior corpus binding",
+  "decision_precedence": "HALT > INCOMPLETE > PASS"
+}

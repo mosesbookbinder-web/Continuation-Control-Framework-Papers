@@ -1,0 +1,8 @@
+{
+  "artifact": "LLM_HANDSHAKE_V1",
+  "status": "INCOMPLETE",
+  "required_binding": [
+    "at least one prior admissible artifact"
+  ],
+  "admissibility_rule": "REFERENCE_REQUIRED"
+}

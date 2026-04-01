@@ -1,0 +1,8 @@
+{
+  "operator_id": "TEST_OPERATOR",
+  "task": "DYAD_BIND",
+  "inputs": {
+    "handshake": "dyad_handshake.txt",
+    "response": "dyad_response.txt"
+  }
+}

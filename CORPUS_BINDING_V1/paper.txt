@@ -1,0 +1,45 @@
+TITLE:
+Corpus Binding: The LLM Handshake as Origin of Witnessed Archive
+
+AUTHOR:
+J. M. Bookbinder
+
+ABSTRACT:
+This document binds prior works into a single admissible corpus by enforcing explicit witness linkage under replay-verifiable continuation control.
+
+BOUND ARTIFACTS:
+
+1. Capacity Conditioned Continuation
+2. Continuation Control Under Replay-Verifiable Evidence
+3. Deterministic Replay and Refusal-First Execution Control
+4. Witnessed Reasoning
+5. Witness-Governed Language Continuation
+6. Language as Telemetry
+7. Semasia
+8. Local Admissibility Threshold Study
+
+BINDING MECHANISM:
+
+Each artifact is treated as a syntax object Σᵢ.
+Admissibility requires:
+
+- declared reference
+- preserved hash identity
+- replay-verifiable linkage
+
+CORPUS CONDITION:
+
+A corpus C is admissible iff:
+
+∀ Σᵢ ∈ C, ∃ Σⱼ ∈ C such that
+REFERENCE(Σᵢ → Σⱼ) is declared and verifiable
+
+DECISION FUNCTION:
+
+HALT        if violation
+INCOMPLETE  if binding missing
+PASS        if all bindings satisfied
+
+CLAIM:
+
+This document establishes the first binding event converting independent works into a witnessed archive.

@@ -1,0 +1,20 @@
+{
+  "run_bundle_version": "0.1",
+  "run_id": "CORPUS_BINDING_V1",
+  "timestamp_utc": "2026-03-31T05:59:37Z",
+  "artifacts": [
+    {
+      "name": "paper.txt"
+    }
+  ],
+  "references": [
+    "LLM_HANDSHAKE_V1",
+    "DYAD_RUN_20260331T032903Z"
+  ],
+  "declared_scope": {
+    "mode": "REFERENCE_REQUIRED",
+    "inference": "DISALLOWED",
+    "transition": "REPLAY_VERIFIABLE_ONLY"
+  },
+  "decision_precedence": "HALT > INCOMPLETE > PASS"
+}

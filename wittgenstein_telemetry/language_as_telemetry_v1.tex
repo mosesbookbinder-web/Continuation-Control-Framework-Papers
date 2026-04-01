@@ -1,0 +1,106 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\title{Language as Telemetry: Wittgenstein, Structural Signals, and Admissible Meaning}
+\author{J. M. Bookbinder \\ Witness Grade Analytics \\ Atlanta, GA, USA}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Operational systems increasingly rely on language to initiate, control, and document state transitions. 
+This paper argues that such language must be treated not as narrative but as telemetry: a structured signal 
+whose admissibility depends on source integrity, rule-governed transformation, and replay-verifiable witness preservation.
+Drawing on Wittgenstein’s account of rule-following and language games, we show that meaning in operational contexts 
+is not a private interpretation but a public, rule-governed activity. 
+This perspective aligns naturally with continuation-control architectures in which system execution proceeds only when 
+admissibility conditions are satisfied. 
+\end{abstract}
+
+\section{Introduction}
+
+Modern software systems frequently treat natural language as an operational interface. 
+Prompts, commands, and policy text may initiate workflows, trigger state changes, or alter system behavior. 
+When language operates in this capacity it functions not merely as description but as signal.
+
+A signal transmitted through an operational system must satisfy structural constraints:
+source identity, transformation rules, temporal ordering, and replay-verifiable preservation. 
+In engineering terms, this is telemetry.
+
+This paper proposes that language used within operational systems must therefore be treated as telemetry rather than narrative.
+
+\section{Wittgenstein and Rule-Governed Meaning}
+
+Wittgenstein argued that meaning arises from rule-governed use within a language game. 
+Understanding a statement is not a private mental act but participation in a public system of rules.
+
+In operational environments this insight has a direct analogue. 
+A statement that triggers execution must be interpreted according to explicit rules and system state. 
+Meaning is therefore constrained by admissibility conditions rather than interpretive freedom.
+
+\section{Telemetry as a Model of Language}
+
+Telemetry systems transmit structured signals from instruments to receivers. 
+Each signal possesses:
+
+\begin{itemize}
+\item A source address
+\item A channel
+\item A timestamp
+\item A transformation history
+\end{itemize}
+
+Language used as an operational command possesses the same structure:
+
+\begin{itemize}
+\item An author or origin
+\item A communication channel
+\item A temporal ordering
+\item A transformation path through the system
+\end{itemize}
+
+This structural similarity motivates treating language as telemetry.
+
+\section{Admissibility and Continuation Control}
+
+Continuation-control architectures determine whether a declared process may proceed under explicit constraints.
+
+Let a continuation $c$ be admissible when all required structural conditions hold.
+
+\[
+\mathrm{Adm}(c) = 1 \iff
+\begin{cases}
+\text{time reconciled} \\
+\text{drift bounded or paid} \\
+\text{gaps preserved and owned} \\
+\text{operator binding present} \\
+\text{deterministic replay holds}
+\end{cases}
+\]
+
+Language signals that trigger execution must therefore satisfy the same admissibility conditions.
+
+\section{Witness Preservation}
+
+To maintain admissibility, operational language must produce verifiable artifacts:
+
+\begin{itemize}
+\item canonicalized representations
+\item cryptographic hashes
+\item deterministic replay instructions
+\item refusal records when admissibility fails
+\end{itemize}
+
+These artifacts serve as witnesses certifying that meaning has remained intact under transformation.
+
+\section{Conclusion}
+
+Language used in operational systems is best understood as telemetry: a rule-governed signal whose admissibility 
+depends on structural verification rather than narrative interpretation. 
+By treating language as telemetry, systems can enforce continuation-control architectures that ensure execution proceeds 
+only under replay-verifiable evidence.
+
+\end{document}

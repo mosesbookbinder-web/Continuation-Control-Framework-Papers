@@ -1,0 +1,5 @@
+{
+  "decision": "PASS",
+  "reason": "corpus binding satisfied through explicit reference to prior admissible artifacts",
+  "decision_precedence": "HALT > INCOMPLETE > PASS"
+}

@@ -1,0 +1,14 @@
+{
+  "run_bundle_version": "0.1",
+  "run_id": "LLM_HANDSHAKE_V1",
+  "timestamp_utc": "2026-03-31T05:55:53Z",
+  "artifact": {
+    "path": "paper.txt"
+  },
+  "declared_scope": {
+    "mode": "REFERENCE_REQUIRED",
+    "inference": "DISALLOWED",
+    "transition": "REPLAY_VERIFIABLE_ONLY"
+  },
+  "decision_precedence": "HALT > INCOMPLETE > PASS"
+}

@@ -1,0 +1,51 @@
+\begin{thebibliography}{1}
+
+\bibitem{bookbinder2026c}
+J.~M. Bookbinder.
+\newblock Admissible continuation under observation: A structural framework for
+  decision integrity under partial observability, 2026.
+\newblock Witness Grade Analytics.
+
+\bibitem{bookbinder2026a}
+J.~M. Bookbinder.
+\newblock Continuation control under replay-verifiable evidence, 2026.
+\newblock Witness Grade Analytics.
+
+\bibitem{bookbinder2026b}
+J.~M. Bookbinder.
+\newblock Deterministic replay and refusal-first execution control in declared
+  processes, 2026.
+\newblock Witness Grade Analytics.
+
+\bibitem{bookbinder2026d}
+J.~M. Bookbinder.
+\newblock Witnessed reasoning: State-anchored interpretation under
+  admissibility constraints, 2026.
+\newblock Witness Grade Analytics.
+
+\bibitem{lamport1978}
+Leslie Lamport.
+\newblock Time, clocks, and the ordering of events in a distributed system.
+\newblock {\em Communications of the ACM}, 21(7):558--565, 1978.
+
+\bibitem{leveson2011}
+Nancy Leveson.
+\newblock {\em Engineering a Safer World: Systems Thinking Applied to Safety}.
+\newblock MIT Press, Cambridge, MA, 2011.
+
+\bibitem{shannon1948}
+Claude~E. Shannon.
+\newblock A mathematical theory of communication.
+\newblock {\em Bell System Technical Journal}, 27(3):379--423, 1948.
+
+\bibitem{wittgenstein1922}
+Ludwig Wittgenstein.
+\newblock {\em Tractatus Logico-Philosophicus}.
+\newblock Routledge, London, 1922.
+
+\bibitem{wittgenstein1953}
+Ludwig Wittgenstein.
+\newblock {\em Philosophical Investigations}.
+\newblock Blackwell, Oxford, 1953.
+
+\end{thebibliography}

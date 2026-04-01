@@ -1,0 +1,12 @@
+Semasia Artifact Packet
+
+Author: J. M. Bookbinder
+Institution: Witness Grade Analytics
+
+Files:
+semasia.tex
+semasia.pdf
+
+Verification:
+shasum -a 256 -c semasia.tex.sha256
+shasum -a 256 -c semasia.pdf.sha256

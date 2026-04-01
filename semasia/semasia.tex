@@ -1,0 +1,330 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue,
+  citecolor=black
+}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  columns=fullflexible
+}
+
+\newtheorem{definition}{Definition}
+\newtheorem{principle}{Principle}
+\newtheorem{proposition}{Proposition}
+
+\title{Semasia: Binding Syntax to Meaning Under Declared Equivalence and Witness}
+\author{J. M. Bookbinder \\ Witness Grade Analytics \\ Atlanta, GA, USA}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper introduces Semasia, a structural framework for binding syntax to meaning through explicit declarations of denotation, equivalence, and witness. Rather than treating semantics as an interpretive layer external to computation, Semasia defines a machine-checkable triple over syntax objects and constrains transformation, canonicalization, and continuation through replay-verifiable witnesses. The framework is compatible with refusal-first continuation control and Harmony-style admissibility gating. Its contribution is not a general theory of language but an operational discipline for preventing semantic drift under rewriting, refinement, and projection.
+\end{abstract}
+
+\section{Introduction}
+
+Operational systems routinely transform symbolic objects: strings are normalized, policies are serialized, queries are rewritten, schemas are projected, and model outputs are reformatted. In ordinary practice these transformations are often treated as harmless. In high-consequence systems they are not harmless. A transformation may preserve legibility while losing meaning, authority, scope, or evidence.
+
+Semasia addresses this problem by making semantic preservation explicit. A syntax object is not treated as meaningful merely because it can be read. It becomes admissible only when its denotation, meaning-preserving equivalences, and preservation witnesses are declared.
+
+\section{Core Formal Object}
+
+Let $\Sigma$ denote a syntax object: a string, program, rule set, schema instance, proof script, message, or structured artifact.
+
+\begin{definition}[Semasia Triple]
+For a syntax object $\Sigma$, define
+\[
+\mathrm{Semasia}(\Sigma) := (D,\sim,W),
+\]
+where:
+\begin{itemize}[leftmargin=2em]
+\item $D$ is the denotation or target of $\Sigma$,
+\item $\sim$ is the declared meaning-preserving equivalence relation over admissible transformations of $\Sigma$,
+\item $W$ is the witness set certifying that preservation under $\sim$ has occurred.
+\end{itemize}
+\end{definition}
+
+This triple separates three questions often conflated in informal semantics:
+\begin{enumerate}[leftmargin=2em]
+\item What does the object denote?
+\item Which transformations preserve that denotation?
+\item What artifacts certify that preservation?
+\end{enumerate}
+
+\section{Photosyntax and Incantation}
+
+The motivating intuition is that some syntax is not merely descriptive but operative. We call such structure \emph{photosyntax}: form capable of carrying transformation. An \emph{incantation} is an executable syntax object whose evaluation produces a state change under declared rules.
+
+These terms are heuristic labels only. The formal content of the framework resides entirely in the Semasia triple and its admissibility rules.
+
+\section{Meaning Preservation Under Transformation}
+
+Let
+\[
+\tau : \Sigma \to \Sigma'
+\]
+be a transformation.
+
+\begin{definition}[Admissible Transformation]
+A transformation $\tau$ is admissible iff
+\[
+\Sigma' \sim \Sigma
+\quad\text{and}\quad
+W(\Sigma,\Sigma') \neq \varnothing.
+\]
+\end{definition}
+
+Thus a transformed object is not admissible merely because it looks similar or is asserted to be equivalent. Admissibility requires both declared equivalence and witness evidence.
+
+\section{Canonicalization as Operational Equivalence}
+
+In computational systems, $\sim$ must be implemented concretely. Let
+\[
+\kappa : \mathcal{S} \to \mathcal{S}
+\]
+be a canonicalization function on a syntax space $\mathcal{S}$.
+
+Typical components of $\kappa$ include:
+\begin{itemize}[leftmargin=2em]
+\item deterministic key ordering,
+\item timestamp normalization,
+\item whitespace normalization,
+\item quantization of floating-point values,
+\item removal of declared irrelevant fields.
+\end{itemize}
+
+Canonicalization operationalizes equivalence:
+\[
+\Sigma \sim \Sigma' \iff \kappa(\Sigma)=\kappa(\Sigma').
+\]
+
+\section{Witness Generation}
+
+A witness is an artifact certifying that preservation occurred. In practice, witnesses may include:
+\begin{itemize}[leftmargin=2em]
+\item hashes of canonical payloads,
+\item signed manifests,
+\item deterministic replay seeds,
+\item invariant reports,
+\item refusal records.
+\end{itemize}
+
+Let
+\[
+W(\Sigma,\Sigma') = \mathcal{A}
+\]
+where $\mathcal{A}$ is a finite artifact set.
+
+A minimal cryptographic witness is:
+\[
+h(\Sigma) = \mathrm{SHA256}(\kappa(\Sigma)).
+\]
+
+\section{Continuation Control}
+
+Semasia integrates with a refusal-first continuation-control regime. Let
+\[
+\Delta(\Sigma') \in \{\mathrm{HALT},\mathrm{INCOMPLETE},\mathrm{PASS}\}.
+\]
+
+Decision precedence is strict:
+\[
+\mathrm{HALT} > \mathrm{INCOMPLETE} > \mathrm{PASS}.
+\]
+
+\begin{principle}[Semasia Admissibility Principle]
+A transformed syntax object $\Sigma'$ may continue operationally only if:
+\begin{enumerate}[leftmargin=2em]
+\item $\Sigma' \sim \Sigma$ under declared equivalence,
+\item required witnesses are present,
+\item no halt-condition holds.
+\end{enumerate}
+\end{principle}
+
+Equivalently,
+\[
+\Delta(\Sigma') =
+\begin{cases}
+\mathrm{HALT}, & \text{if a halt-condition holds},\\[4pt]
+\mathrm{INCOMPLETE}, & \text{if required checks are unknown or witnesses are missing},\\[4pt]
+\mathrm{PASS}, & \text{if equivalence and witnesses are verified}.
+\end{cases}
+\]
+
+\section{Formal Operators for Language-Domain Semasia}
+
+When $\Sigma$ is a language artifact, Semasia evaluates operator classes that alter the action space of the receiver.
+
+Let
+\[
+\mathcal{O}(u)=\{o_1(u),\dots,o_m(u)\}
+\]
+for text artifact $u$.
+
+Core operators:
+\begin{itemize}[leftmargin=2em]
+\item \textbf{PROCESS\_PROXY}: process or policy invoked in place of an accountable operator,
+\item \textbf{ROUTE}: actionable next-step induced,
+\item \textbf{AUTH\_INJECT}: authority or citation invoked as support,
+\item \textbf{TIME\_DEFERRAL}: resolution shifted into an unbounded future,
+\item \textbf{AMBIGUATE}: interpretation space widened without structural clarification.
+\end{itemize}
+
+Coercion operators:
+\begin{itemize}[leftmargin=2em]
+\item \textbf{CONTINUATION\_PRESSURE},
+\item \textbf{STRUCTURAL\_DEPENDENCY},
+\item \textbf{COMPLIANCE\_CONDITIONING}.
+\end{itemize}
+
+Define coercion predicate
+\[
+C(u)=\max\{o_{\mathrm{press}}(u),o_{\mathrm{dep}}(u),o_{\mathrm{cond}}(u)\}.
+\]
+
+\section{Invariant Witness Classes}
+
+For language artifacts, define the invariant witness vector:
+\[
+\Sigma_W(u)=\bigl(W_S(u),W_O(u),W_R(u),W_T(u)\bigr)\in\{0,1\}^4,
+\]
+where:
+\begin{itemize}[leftmargin=2em]
+\item $W_S$ = source witness,
+\item $W_O$ = operator witness,
+\item $W_R$ = route witness,
+\item $W_T$ = time witness.
+\end{itemize}
+
+Canonical order:
+\[
+W_S \prec W_O \prec W_R \prec W_T.
+\]
+
+First missing witness:
+\[
+\operatorname{firstMissing}(u)=\min_{\prec}\{W_i : W_i(u)=0\}.
+\]
+
+\section{Harmony Integration}
+
+Semasia is a language-domain instrument inside a broader continuation-control kernel with fixed gate order
+\[
+A \to V \to L \to R \to P \to M \to E.
+\]
+
+Semasia resides in Gate $V$ (veil/header completeness), because it determines whether language artifacts are structurally complete enough to participate in continuation.
+
+Semasia result object:
+\[
+\mathrm{SemasiaResult}(u)=
+\{\Delta(u),\,C(u),\,A(u),\,\Sigma_W(u),\,b_O(u),\,\operatorname{firstMissing}(u)\}.
+\]
+
+If Gate $V$ fails for a text artifact, downstream projections do not admit continuation of that artifact.
+
+\section{Pseudocode}
+
+\begin{lstlisting}[language=Python]
+def semasia_gate_v1(text: str, meta: dict) -> dict:
+    coercion_present = (
+        detect_continuation_pressure(text)
+        or detect_structural_dependency(text)
+        or detect_compliance_conditioning(text)
+    )
+
+    action_implied = detect_action_induction(text) or coercion_present
+    owner_score = owner_binding_score(text, meta)
+
+    witnesses = {
+        "SOURCE_WITNESS": detect_source_witness(text, meta),
+        "OWNER_WITNESS": owner_score >= 0.75,
+        "ROUTE_WITNESS": detect_route_contact(text, meta) and owner_score >= 0.75,
+        "TIME_WITNESS": detect_time_witness(text, meta),
+    }
+
+    first_missing = None
+    for key in ["SOURCE_WITNESS", "OWNER_WITNESS", "ROUTE_WITNESS", "TIME_WITNESS"]:
+        if not witnesses[key]:
+            first_missing = key
+            break
+
+    if coercion_present and first_missing is not None:
+        decision = "HALT"
+    elif action_implied and first_missing is not None:
+        decision = "INCOMPLETE"
+    else:
+        decision = "PASS"
+
+    return {
+        "decision": decision,
+        "coercion_present": coercion_present,
+        "action_implied": action_implied,
+        "invariant_witnesses": witnesses,
+        "owner_binding_score": owner_score,
+        "first_missing_witness": first_missing,
+    }
+\end{lstlisting}
+
+\section{Implementation Patterns}
+
+Semasia can be implemented through:
+\begin{itemize}[leftmargin=2em]
+\item type boundaries and schemas,
+\item canonicalization functions,
+\item witness sealing,
+\item non-bypassable decision gates,
+\item append-only refusal ledgers.
+\end{itemize}
+
+These are not merely implementation conveniences. They are the operational form of $(D,\sim,W)$.
+
+\section{Conclusion}
+
+Semasia formalizes a structural answer to the problem of meaning preservation under transformation. By binding syntax to denotation, declared equivalence, and witness evidence, it prevents semantic drift from being smuggled into operational systems as though it were harmless rewriting.
+
+The framework does not claim to solve meaning in the abstract. Its contribution is narrower and more useful: it specifies how a system can determine whether a transformed symbolic object remains admissible for continuation.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+
+\bibitem{wittgenstein1}
+Ludwig Wittgenstein.
+\newblock \emph{Tractatus Logico-Philosophicus}.
+\newblock Routledge, 1922.
+
+\bibitem{wittgenstein2}
+Ludwig Wittgenstein.
+\newblock \emph{Philosophical Investigations}.
+\newblock Blackwell, 1953.
+
+\bibitem{shannon}
+Claude E. Shannon.
+\newblock A Mathematical Theory of Communication.
+\newblock \emph{Bell System Technical Journal}, 27(3):379--423, 1948.
+
+\bibitem{bookbinder}
+J. M. Bookbinder.
+\newblock \emph{Continuation Control Under Replay-Verifiable Evidence}.
+\newblock Witness Grade Analytics, 2026.
+
+\end{thebibliography}
+
+\end{document}
